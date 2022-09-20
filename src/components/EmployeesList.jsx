@@ -5,9 +5,9 @@ import { Employee } from "./Employee"
 export function Employees() {
     const { employeesListData, handleEmployees } = useContext(DataContext)
     return (
-        <div  className="flex flex-wrap m-6 gap-2">
+        <div className="flex flex-wrap m-6 gap-2">
             {employeesListData.map(
-                employee => <Employee  key={employee.id} {...employee} />)}
+                employee => <Employee key={employee.id} handleEmployees={handleEmployees} {...employee} />)}
         </div>
 
     )

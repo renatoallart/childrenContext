@@ -2,20 +2,17 @@ import { createContext, useState } from 'react'
 import EmployeesData from '../data/employeesList'
 
 
+import { nameUpdate } from '../actions/nameUpdate'
+
 export const DataContext = createContext()
 
 export function EmployeesContext({ children }) {
   const [employeesListData, setEmployeesListData] = useState(EmployeesData)
 
-  function updateName(employeeId, value) {
-    setEmployeesListData(oldStatsEmployees => oldStatsEmployees.map(employee =>
-      employee.id == employeeId ? { ...employee, fullName: value } : employee))
-  }
-
   function handleEmployees(action, payload) {
     switch (action) {
-      case 'Update Name':
-        updateName(payload.id, payload.value)
+      case 'Name Update':
+        nameUpdate(setEmployeesListData, payload.id, payload.value)
     }
   }
 
