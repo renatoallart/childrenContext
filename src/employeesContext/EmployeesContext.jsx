@@ -9,11 +9,20 @@ export const DataContext = createContext()
 export function EmployeesContext({ children }) {
   const [employeesListData, setEmployeesListData] = useState(EmployeesData)
 
+  
+
   function handleEmployees(action, payload) {
-    switch (action) {
-      case 'Name Update':
-        nameUpdate(setEmployeesListData, payload.id, payload.value)
+    
+    // switch (action) {
+    //   case 'update':
+    //   return nameUpdate(setEmployeesListData, payload.id, payload.value)
+    // }
+
+    const actionsMap = {
+      'update': nameUpdate(setEmployeesListData, payload.id, payload.value)
     }
+    return actionsMap[action] ?? 'Action invalid!'
+    
   }
 
   return (
